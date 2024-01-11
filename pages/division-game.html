@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.cdnfonts.com/css/modern-warfare"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display+SC:wght@700&family=Poppins:ital,wght@0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/game.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+
+    <title>Division Game - AGAME</title>
+  </head>
+  <body>
+    <header class="home-header">
+      <a href="/pages/home.html" class="logo">AGAME</a>
+      <nav class="main-navbar">
+        <a href="">Home</a><a href="">About Us</a><a href="">Leaderboards</a
+        ><a href="">Contact</a><a href="">How to Play</a>
+        <i class="fa-solid fa-bars-staggered barsBtn"></i>
+        <div class="user-profile">
+          <img src="/images/user/user-1.png" alt="" />
+        </div>
+      </nav>
+    </header>
+
+    <div class="game-title">
+      <span class="operation-title">÷</span>
+      <span class="operation-title-text">Division Game</span>
+    </div>
+    <div class="game-content">
+      <div class="timer-and-buttons">
+        <div class="game-timer">120</div>
+        <div class="buttons">
+          <button class="start-button">Start</button
+          ><button type="button" class="quit-button">Quit</button>
+        </div>
+      </div>
+
+      <div class="quit-modal">
+        <h2>Are you sure?</h2>
+        <div class="quit-buttons">
+          <button class="yes-button">Yes</button>
+          <button class="no-button">No</button>
+        </div>
+      </div>
+      <div class="quit-overlay"></div>
+
+      <div class="arithmetic-solving-and-user-game-information">
+        <div class="arithmetic-solving">
+          <h2 class="answer-question">
+            What is your Answer<span class="question-mark">?</span>
+          </h2>
+          <div class="problem">
+            <span class="first-number">0</span>
+            <span class="operation">÷</span>
+            <span class="second-number">0</span>
+          </div>
+          <div class="reveal-answer">
+            <span class="equals-to">=</span>
+            <span>Your answer: <span class="user-answer">?</span></span>
+          </div>
+
+          <input type="number" class="answer" />
+
+          <button class="answerBtn">Enter</button>
+        </div>
+
+        <div class="user-game-information">
+          <div class="profile-and-name">
+            <div class="user-profile">
+              <img src="/images/user/user-1.png" alt="" />
+            </div>
+            <div class="name">
+              <span class="fullname">Jeremiah Nava</span>
+              <span class="nickname">@AiahNava</span>
+            </div>
+          </div>
+
+          <div class="score-and-highscore">
+            <div class="score">
+              <div class="score-text">
+                Score: <span class="score-number">0</span>
+              </div>
+            </div>
+
+            <div class="highscore">
+              <div class="highscore-text">
+                HighScore: <span class="highscore-number">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/division-game.js"></script>
+  </body>
+</html>

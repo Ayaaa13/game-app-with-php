@@ -1,0 +1,148 @@
+const Timer = document.querySelector(".game-timer");
+const startBtn = document.querySelector(".start-button");
+const firstNumber = document.querySelector(".first-number");
+const secondNumber = document.querySelector(".second-number");
+const answer = document.querySelector(".answer");
+const correctOrWrong = document.querySelector(".correct-or-wrong");
+const answerBtn = document.querySelector(".answerBtn");
+const myAnswer = document.querySelector(".user-answer");
+const scoreNumber = document.querySelector(".score-number");
+const highscoreNumber = document.querySelector(".highscore-number");
+const body = document.querySelector("body");
+const quitBtn = document.querySelector(".quit-button");
+const quitModal = document.querySelector(".quit-modal");
+const quitOverlay = document.querySelector(".quit-overlay");
+const noBtn = document.querySelector(".no-button");
+const yesBtn = document.querySelector(".yes-button");
+
+let score = 0;
+let highscore = 5;
+let timerInterval;
+
+scoreNumber.innerHTML = score;
+highscoreNumber.innerHTML = highscore;
+
+function AnswerIsTrue() {
+  score++;
+  scoreNumber.innerHTML = score;
+
+  answer.value = "";
+  if (score > highscore) {
+    highscore.innerHTML = score;
+    highscoreNumber.innerHTML = score;
+  }
+}
+
+function WrongAnswer() {
+  body.classList.add("wrong");
+  body.classList.remove("correct");
+
+  setTimeout(function () {
+    body.classList.remove("wrong");
+  }, 100);
+}
+
+function CorrectAnswer() {
+  body.classList.add("correct");
+  body.classList.remove("wrong");
+
+  setTimeout(function () {
+    body.classList.remove("correct");
+  }, 100);
+}
+
+function GameTimer() {
+  let time = 120;
+  function tick() {
+    time--;
+
+    Timer.innerHTML = Number(time);
+
+    if (time > 0) {
+      timerInterval = setTimeout(tick, 1000);
+    } else {
+      Timer.innerHTML = String("TIME IS UP");
+    }
+  }
+  tick();
+}
+
+function StartGame() {
+  // RANDOM NUMBER
+  let first = parseFloat(Math.floor(Math.random() * 10) + 1);
+  let second = parseFloat(Math.floor(Math.random() * 10) + 1);
+
+  // ANSWER
+  let equals = first / second;
+  let finalEquals = equals.toFixed(2);
+  console.log(finalEquals);
+  firstNumber.innerHTML = first;
+  secondNumber.innerHTML = second;
+  AnswerGame(finalEquals);
+}
+
+startBtn.addEventListener("click", function () {
+  quitBtn.classList.add("abled");
+  startBtn.classList.add("disabled");
+  answerBtn.classList.add("abled");
+
+  GameTimer();
+  StartGame();
+});
+
+function QuitGame() {
+  quitBtn.classList.remove("abled");
+  startBtn.classList.remove("disabled");
+  answerBtn.classList.remove("abled");
+  myAnswer.innerHTML = "?";
+  answer.value = "";
+
+  score = 0;
+  scoreNumber.innerHTML = score;
+  Timer.innerHTML = Number(120);
+  clearTimeout(timerInterval);
+
+  let firstNumberReset = 0;
+  let secondNumberReset = 0;
+  firstNumber.innerHTML = firstNumberReset;
+  secondNumber.innerHTML = secondNumberReset;
+}
+
+function AddQuitModal() {
+  quitModal.classList.add("visible");
+  quitOverlay.classList.add("visible");
+}
+
+function RemoveQuitModal() {
+  quitModal.classList.remove("visible");
+  quitOverlay.classList.remove("visible");
+}
+
+quitBtn.addEventListener("click", function () {
+  AddQuitModal();
+});
+
+yesBtn.addEventListener("click", function () {
+  RemoveQuitModal();
+  QuitGame();
+});
+
+noBtn.addEventListener("click", function () {
+  RemoveQuitModal();
+});
+
+function AnswerGame(finalEquals) {
+  answerBtn.addEventListener("click", function () {
+    let userAnswer = Number(answer.value);
+
+    myAnswer.innerHTML = userAnswer;
+
+    if (userAnswer === parseFloat(finalEquals)) {
+      AnswerIsTrue();
+      CorrectAnswer();
+      StartGame();
+    } else {
+      WrongAnswer();
+    }
+  });
+}
